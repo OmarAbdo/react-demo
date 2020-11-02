@@ -1,5 +1,8 @@
 # to use docker, you always need a sudo command
 sudo : required
+language: node_js
+node_js:
+  - "stable"
 
 # services needed on the deployment server (I guess)
 services:
