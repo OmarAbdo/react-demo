@@ -14,6 +14,20 @@ before_install:
 script:
     - docker run omarabdo/react-demo npm run test -- --watchAll=false # explanation below
 
+deploy:
+    provider: elasticbeanstalk
+    region: "us-east-1"
+    app: "react-demo"
+    env: "ReactDemo-env"
+    bucket_name: "elasticbeanstalk-us-east-1-193438229228"
+    bucket_path: "react-demo" # the folder for your elastic beanstalk in your s3 bucket. if you didn't deploy any build before, then you need to write the application name in here
+    on:
+        branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key:
+        secure: "$AWS_SECRET_KEY"
+
+
 # travis & npm gotcha, travis waits for a response from 
 # npm run test, and in some cases also npm run test is
 # waiting for some input from the user. and because of that
