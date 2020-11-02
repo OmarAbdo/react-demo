@@ -1,8 +1,5 @@
 # to use docker, you always need a sudo command
 sudo : required
-language: node_js
-node_js:
-  - "stable"
 
 # services needed on the deployment server (I guess)
 services:
@@ -14,7 +11,7 @@ before_install:
 
 # commands that need to be executed to run the test suite 
 script:
-    - docker run omarabdo/react-demo npm run test -- --coverage # explanation below
+    - docker run omarabdo/react-demo npm run test -- --watchAll=false # explanation below
 
 # travis & npm gotcha, travis waits for a response from 
 # npm run test, and in some cases also npm run test is
