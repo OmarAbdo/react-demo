@@ -1,4 +1,5 @@
 # to use docker, you always need a sudo command
+language: generic
 sudo : required
 
 # services needed on the deployment server (I guess)
