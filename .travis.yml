@@ -1,0 +1,21 @@
+# to use docker, you always need a sudo command
+sudo : required
+
+# services needed on the deployment server (I guess)
+services:
+    - docker
+
+# commands to run before running our app or running our test suite
+before_install:
+    - docker build -t omarabdo/react-demo -f Dockerfile.dev .
+
+# commands that need to be executed to run the test suite 
+script:
+    - docker run omarabdo/react-demo npm run test -- --coverage # explanation below
+
+# travis & npm gotcha, travis waits for a response from 
+# npm run test, and in some cases also npm run test is
+# waiting for some input from the user. and because of that
+# both of them will keep waiting for ever, and hence, you need
+# the following work around
+# docker run [imageId] npm run test -- --cover
